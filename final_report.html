@@ -27,7 +27,7 @@
   .sub{ color:var(--muted); font-size:13px; margin-top:4px;}
   .progress-wrap{ text-align:right; }
   .progress-bar{ width:220px; height:6px; background:var(--surface-2); border-radius:4px; overflow:hidden; margin-top:6px; border:1px solid var(--border);}
-  .progress-fill{ height:100%; background:linear-gradient(90deg,var(--amber),var(--cyan)); width:6.8%; }
+  .progress-fill{ height:100%; background:linear-gradient(90deg,var(--amber),var(--cyan)); width:100%; }
 
   .kpi-row{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:20px;}
   .plate{ background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:15px 16px 13px; position:relative; overflow:hidden;}
@@ -67,11 +67,11 @@
   <div>
     <div class="eyebrow"><span class="dot"></span> KAGGLE CAR PLATE · QA PRACTICE PROJECT</div>
     <h1>번호판 검증 실습 — 완성본 리포트</h1>
-    <div class="sub">Kaggle Car License Plate Detection (433장) 기반 · 사람이 직접 검수한 32건 결과</div>
+    <div class="sub">Kaggle Car License Plate Detection (433장) 기반 · 사람이 직접 검수한 471건(전체) 결과</div>
   </div>
   <div class="progress-wrap">
     <div class="sub">전체 번호판 471건 중 진행률</div>
-    <div style="font-family:var(--mono); font-size:20px; color:var(--amber);">32 / 471 <span style="font-size:12px;color:var(--muted);">(6.8%)</span></div>
+    <div style="font-family:var(--mono); font-size:20px; color:var(--amber);">471 / 471 <span style="font-size:12px;color:var(--muted);">(100%)</span></div>
     <div class="progress-bar"><div class="progress-fill"></div></div>
   </div>
 </header>
@@ -80,14 +80,14 @@
   <div class="plate"><div class="k-label">검출 Precision</div><div class="k-value ok">91.7%</div></div>
   <div class="plate"><div class="k-label">검출 Recall</div><div class="k-value ok">89.0%</div></div>
   <div class="plate"><div class="k-label">검출 F1</div><div class="k-value ok">90.3%</div></div>
-  <div class="plate cyan"><div class="k-label">번호판 정인식률</div><div class="k-value cyan">17.9%</div></div>
-  <div class="plate cyan"><div class="k-label">평균 CER</div><div class="k-value warn">0.485</div></div>
+  <div class="plate cyan"><div class="k-label">번호판 정인식률</div><div class="k-value cyan">21.2%</div></div>
+  <div class="plate cyan"><div class="k-label">평균 CER</div><div class="k-value warn">0.499</div></div>
 </div>
 
 <div class="note">
   <b>왜 정인식률이 낮게 나왔나?</b> 이 실습은 <b>범용 OCR 엔진(tesseract)</b>을 그대로 사용했습니다 — 실제 상용 ANPR(번호판 인식) 시스템처럼
   번호판 전용으로 학습된 모델이 아닙니다. 그래서 각도, 반사, 저해상도, 2단 번호판 등에 매우 취약하게 나왔고, 이건 정상적인 결과입니다.
-  <b>검출 성능(91.7~90.3%)</b>은 시뮬레이션값이라 별개로 안정적으로 나온 것이고, <b>인식 성능(17.9%)</b>이 낮은 게 바로
+  <b>검출 성능(91.7~90.3%)</b>은 시뮬레이션값이라 별개로 안정적으로 나온 것이고, <b>인식 성능(21.2%)</b>이 낮은 게 바로
   "왜 전용 ANPR 모델이 필요한지"를 보여주는 실습의 핵심 포인트입니다.
 </div>
 
@@ -146,16 +146,8 @@ const ROWS = [
     "source_image": "Cars3.png",
     "crop_file": "Cars3_0.png",
     "ai_recognized_plate": "—DZI7YXR|",
-    "actual_plate": "DZ17YXR",
+    "actual_plate": "DZ17 YXR",
     "judgement": "오인식"
-  },
-  {
-    "event_id": "5",
-    "source_image": "Cars3.png",
-    "crop_file": "",
-    "ai_recognized_plate": "",
-    "actual_plate": "UNREADABLE",
-    "judgement": "확인불가"
   },
   {
     "event_id": "6",
@@ -372,6 +364,3526 @@ const ROWS = [
     "ai_recognized_plate": "JPK6546.",
     "actual_plate": "JPK6546.",
     "judgement": "정인식"
+  },
+  {
+    "event_id": "36",
+    "source_image": "Cars31.png",
+    "crop_file": "Cars31_0.png",
+    "ai_recognized_plate": "YD63LB",
+    "actual_plate": "YD63LB",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "37",
+    "source_image": "Cars32.png",
+    "crop_file": "Cars32_0.png",
+    "ai_recognized_plate": "MANISA",
+    "actual_plate": "MANISA",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "38",
+    "source_image": "Cars33.png",
+    "crop_file": "Cars33_0.png",
+    "ai_recognized_plate": "roxesAWD",
+    "actual_plate": "OX65AWD",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "39",
+    "source_image": "Cars34.png",
+    "crop_file": "Cars34_0.png",
+    "ai_recognized_plate": ")DL7CN5617|",
+    "actual_plate": "DL7CN5617",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "40",
+    "source_image": "Cars35.png",
+    "crop_file": "Cars35_0.png",
+    "ai_recognized_plate": "OMS",
+    "actual_plate": "AK0188",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "41",
+    "source_image": "Cars36.png",
+    "crop_file": "Cars36_0.png",
+    "ai_recognized_plate": "MTDLYPH",
+    "actual_plate": "MIDLYPH",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "43",
+    "source_image": "Cars37.png",
+    "crop_file": "Cars37_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "FAST",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "44",
+    "source_image": "Cars38.png",
+    "crop_file": "Cars38_0.png",
+    "ai_recognized_plate": "ONGBCKY.",
+    "actual_plate": "OMGBCKY",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "45",
+    "source_image": "Cars39.png",
+    "crop_file": "Cars39_0.png",
+    "ai_recognized_plate": "“MH15B08677|",
+    "actual_plate": "MH15BD8877",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "47",
+    "source_image": "Cars40.png",
+    "crop_file": "Cars40_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "M17108 FV1232",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "48",
+    "source_image": "Cars41.png",
+    "crop_file": "Cars41_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "YNTZDBG",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "49",
+    "source_image": "Cars42.png",
+    "crop_file": "Cars42_0.png",
+    "ai_recognized_plate": "BYHM*136}",
+    "actual_plate": "BYHM·136",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "50",
+    "source_image": "Cars43.png",
+    "crop_file": "Cars43_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "MH20BQ20",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "51",
+    "source_image": "Cars44.png",
+    "crop_file": "Cars44_0.png",
+    "ai_recognized_plate": "BDL2cAG0786]",
+    "actual_plate": "DL2CAG0786",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "52",
+    "source_image": "Cars45.png",
+    "crop_file": "Cars45_0.png",
+    "ai_recognized_plate": "[nr",
+    "actual_plate": "IMGROOT",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "53",
+    "source_image": "Cars46.png",
+    "crop_file": "Cars46_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "MH14GN9239",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "54",
+    "source_image": "Cars47.png",
+    "crop_file": "Cars47_0.png",
+    "ai_recognized_plate": "deeSAIS",
+    "actual_plate": "5HT798",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "55",
+    "source_image": "Cars48.png",
+    "crop_file": "Cars48_0.png",
+    "ai_recognized_plate": "|ALR466|",
+    "actual_plate": "ALR486",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "56",
+    "source_image": "Cars49.png",
+    "crop_file": "Cars49_0.png",
+    "ai_recognized_plate": "qgoulu,",
+    "actual_plate": "30461C",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "57",
+    "source_image": "Cars50.png",
+    "crop_file": "Cars50_0.png",
+    "ai_recognized_plate": "|PUlaBes",
+    "actual_plate": "PUI8BES",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "58",
+    "source_image": "Cars51.png",
+    "crop_file": "Cars51_0.png",
+    "ai_recognized_plate": "YESBOSS",
+    "actual_plate": "YESBOSS",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "59",
+    "source_image": "Cars52.png",
+    "crop_file": "Cars52_0.png",
+    "ai_recognized_plate": "“MH15BD8877,",
+    "actual_plate": "MH15BD8877",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "60",
+    "source_image": "Cars53.png",
+    "crop_file": "Cars53_0.png",
+    "ai_recognized_plate": "|CHIOOSE|",
+    "actual_plate": "CHIOOSE",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "61",
+    "source_image": "Cars54.png",
+    "crop_file": "Cars54_0.png",
+    "ai_recognized_plate": "LeoRAWw8}",
+    "actual_plate": "LTM378",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "62",
+    "source_image": "Cars55.png",
+    "crop_file": "Cars55_0.png",
+    "ai_recognized_plate": "a,",
+    "actual_plate": "9214",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "63",
+    "source_image": "Cars56.png",
+    "crop_file": "Cars56_0.png",
+    "ai_recognized_plate": "BUSS",
+    "actual_plate": "KLBOSS",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "64",
+    "source_image": "Cars57.png",
+    "crop_file": "Cars57_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "BKWL324",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "65",
+    "source_image": "Cars58.png",
+    "crop_file": "Cars58_0.png",
+    "ai_recognized_plate": "MH01DB0001",
+    "actual_plate": "MH01DB0001",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "66",
+    "source_image": "Cars59.png",
+    "crop_file": "Cars59_0.png",
+    "ai_recognized_plate": "wn,46.7.",
+    "actual_plate": "MH46P1651",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "67",
+    "source_image": "Cars60.png",
+    "crop_file": "Cars60_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "OS802HN",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "68",
+    "source_image": "Cars61.png",
+    "crop_file": "Cars61_0.png",
+    "ai_recognized_plate": "@ag7nei‘",
+    "actual_plate": "MMN306",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "69",
+    "source_image": "Cars62.png",
+    "crop_file": "Cars62_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "WATTUP",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "70",
+    "source_image": "Cars63.png",
+    "crop_file": "Cars63_0.png",
+    "ai_recognized_plate": "IEAM,",
+    "actual_plate": "BIGTEAM",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "71",
+    "source_image": "Cars64.png",
+    "crop_file": "Cars64_0.png",
+    "ai_recognized_plate": "[_avr",
+    "actual_plate": "TAXI",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "72",
+    "source_image": "Cars65.png",
+    "crop_file": "Cars65_0.png",
+    "ai_recognized_plate": "oefi\\NI",
+    "actual_plate": "ORINNIE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "73",
+    "source_image": "Cars66.png",
+    "crop_file": "Cars66_0.png",
+    "ai_recognized_plate": "=",
+    "actual_plate": "9214",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "74",
+    "source_image": "Cars67.png",
+    "crop_file": "Cars67_0.png",
+    "ai_recognized_plate": "Livin148N7077;",
+    "actual_plate": "MH14BN7077",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "75",
+    "source_image": "Cars68.png",
+    "crop_file": "Cars68_0.png",
+    "ai_recognized_plate": "0",
+    "actual_plate": "BJR216",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "76",
+    "source_image": "Cars69.png",
+    "crop_file": "Cars69_0.png",
+    "ai_recognized_plate": "KWID",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "77",
+    "source_image": "Cars70.png",
+    "crop_file": "Cars70_0.png",
+    "ai_recognized_plate": "~~",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "78",
+    "source_image": "Cars71.png",
+    "crop_file": "Cars71_0.png",
+    "ai_recognized_plate": "oes",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "79",
+    "source_image": "Cars71.png",
+    "crop_file": "Cars71_1.png",
+    "ai_recognized_plate": "SUNGJZ",
+    "actual_plate": "LN13CJZ",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "80",
+    "source_image": "Cars72.png",
+    "crop_file": "Cars72_0.png",
+    "ai_recognized_plate": "DL7CN5617",
+    "actual_plate": "DL7CN5617",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "81",
+    "source_image": "Cars73.png",
+    "crop_file": "Cars73_0.png",
+    "ai_recognized_plate": "™NSSF2378",
+    "actual_plate": "TN99F2378",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "82",
+    "source_image": "Cars74.png",
+    "crop_file": "Cars74_0.png",
+    "ai_recognized_plate": "S8CZ\\7KOD|",
+    "actual_plate": "CZ17KOD",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "83",
+    "source_image": "Cars75.png",
+    "crop_file": "Cars75_0.png",
+    "ai_recognized_plate": "—",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "84",
+    "source_image": "Cars76.png",
+    "crop_file": "Cars76_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "MH31EAIRSS",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "86",
+    "source_image": "Cars77.png",
+    "crop_file": "Cars77_0.png",
+    "ai_recognized_plate": "&»6CU6799",
+    "actual_plate": "HR26CU6799",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "87",
+    "source_image": "Cars78.png",
+    "crop_file": "Cars78_0.png",
+    "ai_recognized_plate": "|BE54:A2670",
+    "actual_plate": "KL54A2670",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "88",
+    "source_image": "Cars79.png",
+    "crop_file": "Cars79_0.png",
+    "ai_recognized_plate": "pi|;'ky",
+    "actual_plate": "4GETOIL",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "89",
+    "source_image": "Cars80.png",
+    "crop_file": "Cars80_0.png",
+    "ai_recognized_plate": "ABAD:2:31",
+    "actual_plate": "BAD231",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "90",
+    "source_image": "Cars81.png",
+    "crop_file": "Cars81_0.png",
+    "ai_recognized_plate": "———",
+    "actual_plate": "ROY9",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "92",
+    "source_image": "Cars82.png",
+    "crop_file": "Cars82_0.png",
+    "ai_recognized_plate": "UPIGTCI366",
+    "actual_plate": "UP16TC1366",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "93",
+    "source_image": "Cars83.png",
+    "crop_file": "Cars83_0.png",
+    "ai_recognized_plate": "codUuL",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "94",
+    "source_image": "Cars84.png",
+    "crop_file": "Cars84_0.png",
+    "ai_recognized_plate": "HR26BC5514",
+    "actual_plate": "HR26BC5514",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "95",
+    "source_image": "Cars85.png",
+    "crop_file": "Cars85_0.png",
+    "ai_recognized_plate": "VUS3CTY}",
+    "actual_plate": "VU63GTY",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "96",
+    "source_image": "Cars85.png",
+    "crop_file": "Cars85_1.png",
+    "ai_recognized_plate": "fi”«",
+    "actual_plate": "VJ64CNC",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "97",
+    "source_image": "Cars86.png",
+    "crop_file": "Cars86_0.png",
+    "ai_recognized_plate": "HHADKSS",
+    "actual_plate": "MH14DX9937",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "98",
+    "source_image": "Cars87.png",
+    "crop_file": "Cars87_0.png",
+    "ai_recognized_plate": "SiRese",
+    "actual_plate": "TSLAS1",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "99",
+    "source_image": "Cars87.png",
+    "crop_file": "Cars87_1.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "100",
+    "source_image": "Cars88.png",
+    "crop_file": "Cars88_0.png",
+    "ai_recognized_plate": "E:bop/sT7",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "101",
+    "source_image": "Cars89.png",
+    "crop_file": "Cars89_0.png",
+    "ai_recognized_plate": "ea",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "102",
+    "source_image": "Cars89.png",
+    "crop_file": "Cars89_1.png",
+    "ai_recognized_plate": "Yun@",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "104",
+    "source_image": "Cars90.png",
+    "crop_file": "Cars90_0.png",
+    "ai_recognized_plate": "TR",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "105",
+    "source_image": "Cars91.png",
+    "crop_file": "Cars91_0.png",
+    "ai_recognized_plate": "\\sooly",
+    "actual_plate": "30461C",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "106",
+    "source_image": "Cars92.png",
+    "crop_file": "Cars92_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "闽AD00008",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "107",
+    "source_image": "Cars93.png",
+    "crop_file": "Cars93_0.png",
+    "ai_recognized_plate": "aE",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "108",
+    "source_image": "Cars94.png",
+    "crop_file": "Cars94_0.png",
+    "ai_recognized_plate": "BEYOND)",
+    "actual_plate": "NBEYOND",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "110",
+    "source_image": "Cars95.png",
+    "crop_file": "Cars95_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "闽AD00008",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "111",
+    "source_image": "Cars96.png",
+    "crop_file": "Cars96_0.png",
+    "ai_recognized_plate": "#NAME?",
+    "actual_plate": "PGMN112",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "113",
+    "source_image": "Cars97.png",
+    "crop_file": "Cars97_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "KA05MG1909",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "114",
+    "source_image": "Cars98.png",
+    "crop_file": "Cars98_0.png",
+    "ai_recognized_plate": "~YWORRY",
+    "actual_plate": "YWORRY",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "115",
+    "source_image": "Cars99.png",
+    "crop_file": "Cars99_0.png",
+    "ai_recognized_plate": "Sir2662",
+    "actual_plate": "KA09MA2662",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "116",
+    "source_image": "Cars100.png",
+    "crop_file": "Cars100_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "AW55550",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "117",
+    "source_image": "Cars101.png",
+    "crop_file": "Cars101_0.png",
+    "ai_recognized_plate": "HR26BCS5I4)",
+    "actual_plate": "HR26BC5514",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "118",
+    "source_image": "Cars102.png",
+    "crop_file": "Cars102_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "6861136",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "119",
+    "source_image": "Cars103.png",
+    "crop_file": "Cars103_0.png",
+    "ai_recognized_plate": "—",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "120",
+    "source_image": "Cars103.png",
+    "crop_file": "Cars103_1.png",
+    "ai_recognized_plate": "7",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "121",
+    "source_image": "Cars104.png",
+    "crop_file": "Cars104_0.png",
+    "ai_recognized_plate": "i",
+    "actual_plate": "NL60LXB",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "122",
+    "source_image": "Cars105.png",
+    "crop_file": "Cars105_0.png",
+    "ai_recognized_plate": "SBAI2Z34A_",
+    "actual_plate": "JPK6546.",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "123",
+    "source_image": "Cars106.png",
+    "crop_file": "Cars106_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "124",
+    "source_image": "Cars106.png",
+    "crop_file": "Cars106_1.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "125",
+    "source_image": "Cars106.png",
+    "crop_file": "Cars106_2.png",
+    "ai_recognized_plate": "#",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "126",
+    "source_image": "Cars106.png",
+    "crop_file": "Cars106_3.png",
+    "ai_recognized_plate": "een)",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "127",
+    "source_image": "Cars107.png",
+    "crop_file": "Cars107_0.png",
+    "ai_recognized_plate": "Mir2oBoom",
+    "actual_plate": "MH20BQ20",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "128",
+    "source_image": "Cars108.png",
+    "crop_file": "Cars108_0.png",
+    "ai_recognized_plate": "TMHO1AV8866)",
+    "actual_plate": "MH01AV8866",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "129",
+    "source_image": "Cars109.png",
+    "crop_file": "Cars109_0.png",
+    "ai_recognized_plate": "§CZI7KOD|",
+    "actual_plate": "CZ17KOD",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "130",
+    "source_image": "Cars110.png",
+    "crop_file": "Cars110_0.png",
+    "ai_recognized_plate": "pay",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "131",
+    "source_image": "Cars111.png",
+    "crop_file": "Cars111_0.png",
+    "ai_recognized_plate": "|MH20EE7598}",
+    "actual_plate": "MH20EE7598",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "132",
+    "source_image": "Cars112.png",
+    "crop_file": "Cars112_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "SHAKNBK",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "133",
+    "source_image": "Cars113.png",
+    "crop_file": "Cars113_0.png",
+    "ai_recognized_plate": "HWPEACHN",
+    "actual_plate": "MPEACHW",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "134",
+    "source_image": "Cars114.png",
+    "crop_file": "Cars114_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "AP29BP585",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "136",
+    "source_image": "Cars115.png",
+    "crop_file": "Cars115_0.png",
+    "ai_recognized_plate": "M&66YOB,",
+    "actual_plate": "M666YOB",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "137",
+    "source_image": "Cars116.png",
+    "crop_file": "Cars116_0.png",
+    "ai_recognized_plate": "MK-35-32",
+    "actual_plate": "MK3532",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "138",
+    "source_image": "Cars117.png",
+    "crop_file": "Cars117_0.png",
+    "ai_recognized_plate": "Ts",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "139",
+    "source_image": "Cars118.png",
+    "crop_file": "Cars118_0.png",
+    "ai_recognized_plate": "|JA62UAR",
+    "actual_plate": "JA62UAR",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "140",
+    "source_image": "Cars119.png",
+    "crop_file": "Cars119_0.png",
+    "ai_recognized_plate": "on",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "141",
+    "source_image": "Cars120.png",
+    "crop_file": "Cars120_0.png",
+    "ai_recognized_plate": "=B2228HM|",
+    "actual_plate": "B2228HM",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "142",
+    "source_image": "Cars121.png",
+    "crop_file": "Cars121_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "143",
+    "source_image": "Cars122.png",
+    "crop_file": "Cars122_0.png",
+    "ai_recognized_plate": "|MANISA]",
+    "actual_plate": "MANISA",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "144",
+    "source_image": "Cars123.png",
+    "crop_file": "Cars123_0.png",
+    "ai_recognized_plate": "HR26BC5514",
+    "actual_plate": "HR26BC5514",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "145",
+    "source_image": "Cars124.png",
+    "crop_file": "Cars124_0.png",
+    "ai_recognized_plate": "m4]",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "146",
+    "source_image": "Cars125.png",
+    "crop_file": "Cars125_0.png",
+    "ai_recognized_plate": "Scaay",
+    "actual_plate": "RP66887",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "147",
+    "source_image": "Cars126.png",
+    "crop_file": "Cars126_0.png",
+    "ai_recognized_plate": "Khost",
+    "actual_plate": "KA05MG1909",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "148",
+    "source_image": "Cars127.png",
+    "crop_file": "Cars127_0.png",
+    "ai_recognized_plate": "S08",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "149",
+    "source_image": "Cars128.png",
+    "crop_file": "Cars128_0.png",
+    "ai_recognized_plate": "x65AND",
+    "actual_plate": "OX65AWD",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "150",
+    "source_image": "Cars129.png",
+    "crop_file": "Cars129_0.png",
+    "ai_recognized_plate": "OPECTOL",
+    "actual_plate": "OPECLOL",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "151",
+    "source_image": "Cars130.png",
+    "crop_file": "Cars130_0.png",
+    "ai_recognized_plate": "HR26.BR9044)",
+    "actual_plate": "HR26BR9044",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "152",
+    "source_image": "Cars131.png",
+    "crop_file": "Cars131_0.png",
+    "ai_recognized_plate": "Lae",
+    "actual_plate": "AP29BP585",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "153",
+    "source_image": "Cars132.png",
+    "crop_file": "Cars132_0.png",
+    "ai_recognized_plate": "\\ole",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "154",
+    "source_image": "Cars132.png",
+    "crop_file": "Cars132_1.png",
+    "ai_recognized_plate": "#NAME?",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "155",
+    "source_image": "Cars133.png",
+    "crop_file": "Cars133_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "1268",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "156",
+    "source_image": "Cars134.png",
+    "crop_file": "Cars134_0.png",
+    "ai_recognized_plate": "|LISTLC",
+    "actual_plate": "L19TLC",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "157",
+    "source_image": "Cars135.png",
+    "crop_file": "Cars135_0.png",
+    "ai_recognized_plate": "ait7108.",
+    "actual_plate": "M17108 FV1232",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "158",
+    "source_image": "Cars136.png",
+    "crop_file": "Cars136_0.png",
+    "ai_recognized_plate": "Uconn0474)",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "159",
+    "source_image": "Cars137.png",
+    "crop_file": "Cars137_0.png",
+    "ai_recognized_plate": "cere",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "161",
+    "source_image": "Cars138.png",
+    "crop_file": "Cars138_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "TN02BL9",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "162",
+    "source_image": "Cars139.png",
+    "crop_file": "Cars139_0.png",
+    "ai_recognized_plate": "|g",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "163",
+    "source_image": "Cars139.png",
+    "crop_file": "Cars139_1.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "164",
+    "source_image": "Cars140.png",
+    "crop_file": "Cars140_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "CH01AN0001",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "165",
+    "source_image": "Cars141.png",
+    "crop_file": "Cars141_0.png",
+    "ai_recognized_plate": "rT,",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "166",
+    "source_image": "Cars142.png",
+    "crop_file": "Cars142_0.png",
+    "ai_recognized_plate": "BeAoes",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "167",
+    "source_image": "Cars143.png",
+    "crop_file": "Cars143_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "168",
+    "source_image": "Cars143.png",
+    "crop_file": "Cars143_1.png",
+    "ai_recognized_plate": "ONZIONT",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "169",
+    "source_image": "Cars144.png",
+    "crop_file": "Cars144_0.png",
+    "ai_recognized_plate": "\\__PEN15a",
+    "actual_plate": "PEN15",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "170",
+    "source_image": "Cars145.png",
+    "crop_file": "Cars145_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "CH01AN0001",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "171",
+    "source_image": "Cars146.png",
+    "crop_file": "Cars146_0.png",
+    "ai_recognized_plate": "Aksa",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "172",
+    "source_image": "Cars146.png",
+    "crop_file": "Cars146_1.png",
+    "ai_recognized_plate": "Asem",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "173",
+    "source_image": "Cars146.png",
+    "crop_file": "Cars146_2.png",
+    "ai_recognized_plate": "nee|",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "174",
+    "source_image": "Cars146.png",
+    "crop_file": "Cars146_3.png",
+    "ai_recognized_plate": "Wray",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "175",
+    "source_image": "Cars147.png",
+    "crop_file": "Cars147_0.png",
+    "ai_recognized_plate": "FK(G10A2555)",
+    "actual_plate": "KL01CA2555",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "176",
+    "source_image": "Cars148.png",
+    "crop_file": "Cars148_0.png",
+    "ai_recognized_plate": "éMH01.BB=",
+    "actual_plate": "MH01BB550",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "177",
+    "source_image": "Cars149.png",
+    "crop_file": "Cars149_0.png",
+    "ai_recognized_plate": "1IG263",
+    "actual_plate": "7VIG263",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "178",
+    "source_image": "Cars150.png",
+    "crop_file": "Cars150_0.png",
+    "ai_recognized_plate": "E708CX4850",
+    "actual_plate": "DL8CX4850",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "179",
+    "source_image": "Cars151.png",
+    "crop_file": "Cars151_0.png",
+    "ai_recognized_plate": "ear",
+    "actual_plate": "DL3CBD5092",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "180",
+    "source_image": "Cars152.png",
+    "crop_file": "Cars152_0.png",
+    "ai_recognized_plate": "1DL49AK49|",
+    "actual_plate": "DL49AK49",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "181",
+    "source_image": "Cars153.png",
+    "crop_file": "Cars153_0.png",
+    "ai_recognized_plate": "ag20Baa)",
+    "actual_plate": "MH20BQ20",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "183",
+    "source_image": "Cars154.png",
+    "crop_file": "Cars154_0.png",
+    "ai_recognized_plate": "Or2660.",
+    "actual_plate": "KA09MA2662",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "184",
+    "source_image": "Cars155.png",
+    "crop_file": "Cars155_0.png",
+    "ai_recognized_plate": "MCB-O025)",
+    "actual_plate": "MCB025",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "185",
+    "source_image": "Cars156.png",
+    "crop_file": "Cars156_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "PRIVATE",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "186",
+    "source_image": "Cars157.png",
+    "crop_file": "Cars157_0.png",
+    "ai_recognized_plate": "¢",
+    "actual_plate": "PTB557K",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "187",
+    "source_image": "Cars158.png",
+    "crop_file": "Cars158_0.png",
+    "ai_recognized_plate": "695299|",
+    "actual_plate": "695299",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "188",
+    "source_image": "Cars159.png",
+    "crop_file": "Cars159_0.png",
+    "ai_recognized_plate": "DL7CN5617",
+    "actual_plate": "DL7CN5617",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "189",
+    "source_image": "Cars160.png",
+    "crop_file": "Cars160_0.png",
+    "ai_recognized_plate": ";OOTPLATE.COM",
+    "actual_plate": "007PLATE.COM",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "190",
+    "source_image": "Cars161.png",
+    "crop_file": "Cars161_0.png",
+    "ai_recognized_plate": "M666YOB",
+    "actual_plate": "M666YOB",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "191",
+    "source_image": "Cars162.png",
+    "crop_file": "Cars162_0.png",
+    "ai_recognized_plate": "um;Ry;",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "192",
+    "source_image": "Cars163.png",
+    "crop_file": "Cars163_0.png",
+    "ai_recognized_plate": "LA",
+    "actual_plate": "LR33TEE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "193",
+    "source_image": "Cars164.png",
+    "crop_file": "Cars164_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "GT",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "194",
+    "source_image": "Cars165.png",
+    "crop_file": "Cars165_0.png",
+    "ai_recognized_plate": "“A",
+    "actual_plate": "TN21AU1153",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "195",
+    "source_image": "Cars166.png",
+    "crop_file": "Cars166_0.png",
+    "ai_recognized_plate": "IHACAR",
+    "actual_plate": "IMACAR",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "196",
+    "source_image": "Cars167.png",
+    "crop_file": "Cars167_0.png",
+    "ai_recognized_plate": "©15-LK-10898",
+    "actual_plate": "15LK10898",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "197",
+    "source_image": "Cars168.png",
+    "crop_file": "Cars168_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "198",
+    "source_image": "Cars169.png",
+    "crop_file": "Cars169_0.png",
+    "ai_recognized_plate": "mPRIVATE.",
+    "actual_plate": "PRIVATE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "199",
+    "source_image": "Cars170.png",
+    "crop_file": "Cars170_0.png",
+    "ai_recognized_plate": "i",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "200",
+    "source_image": "Cars171.png",
+    "crop_file": "Cars171_0.png",
+    "ai_recognized_plate": "BRL",
+    "actual_plate": "BJR216",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "201",
+    "source_image": "Cars172.png",
+    "crop_file": "Cars172_0.png",
+    "ai_recognized_plate": "islbelth",
+    "actual_plate": "UKC09",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "202",
+    "source_image": "Cars173.png",
+    "crop_file": "Cars173_0.png",
+    "ai_recognized_plate": "Telit",
+    "actual_plate": "WMY9051",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "203",
+    "source_image": "Cars174.png",
+    "crop_file": "Cars174_0.png",
+    "ai_recognized_plate": "1CatSx|",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "204",
+    "source_image": "Cars174.png",
+    "crop_file": "Cars174_1.png",
+    "ai_recognized_plate": "—_",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "205",
+    "source_image": "Cars175.png",
+    "crop_file": "Cars175_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "DL1N4268",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "206",
+    "source_image": "Cars176.png",
+    "crop_file": "Cars176_0.png",
+    "ai_recognized_plate": "09I|;y",
+    "actual_plate": "EV09FTW",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "207",
+    "source_image": "Cars177.png",
+    "crop_file": "Cars177_0.png",
+    "ai_recognized_plate": "©GOOD",
+    "actual_plate": "GOOD",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "208",
+    "source_image": "Cars178.png",
+    "crop_file": "Cars178_0.png",
+    "ai_recognized_plate": "5225922",
+    "actual_plate": "52292Z",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "210",
+    "source_image": "Cars179.png",
+    "crop_file": "Cars179_0.png",
+    "ai_recognized_plate": "USZH590",
+    "actual_plate": "4SZW590",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "211",
+    "source_image": "Cars180.png",
+    "crop_file": "Cars180_0.png",
+    "ai_recognized_plate": "HPEACHN",
+    "actual_plate": "MPEACHW",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "212",
+    "source_image": "Cars181.png",
+    "crop_file": "Cars181_0.png",
+    "ai_recognized_plate": "JHITHAD|",
+    "actual_plate": "JH11HAD",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "213",
+    "source_image": "Cars182.png",
+    "crop_file": "Cars182_0.png",
+    "ai_recognized_plate": "Vi2LAF",
+    "actual_plate": "VI2LAF",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "214",
+    "source_image": "Cars183.png",
+    "crop_file": "Cars183_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "BRIT0001",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "215",
+    "source_image": "Cars184.png",
+    "crop_file": "Cars184_0.png",
+    "ai_recognized_plate": "swieTr",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "216",
+    "source_image": "Cars185.png",
+    "crop_file": "Cars185_0.png",
+    "ai_recognized_plate": "182BO6AaI",
+    "actual_plate": "粤ZB064澳MF9000",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "217",
+    "source_image": "Cars186.png",
+    "crop_file": "Cars186_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "26SPF4",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "218",
+    "source_image": "Cars187.png",
+    "crop_file": "Cars187_0.png",
+    "ai_recognized_plate": "|ALR466|",
+    "actual_plate": "ALR486",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "219",
+    "source_image": "Cars188.png",
+    "crop_file": "Cars188_0.png",
+    "ai_recognized_plate": "=)",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "221",
+    "source_image": "Cars189.png",
+    "crop_file": "Cars189_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "CH01AN0001",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "222",
+    "source_image": "Cars190.png",
+    "crop_file": "Cars190_0.png",
+    "ai_recognized_plate": "KL54:A.2670°",
+    "actual_plate": "KL54A2670",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "223",
+    "source_image": "Cars191.png",
+    "crop_file": "Cars191_0.png",
+    "ai_recognized_plate": "XA03AB3380",
+    "actual_plate": "KA03AB3380",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "224",
+    "source_image": "Cars192.png",
+    "crop_file": "Cars192_0.png",
+    "ai_recognized_plate": "BE4GLE|",
+    "actual_plate": "E4GLE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "226",
+    "source_image": "Cars193.png",
+    "crop_file": "Cars193_0.png",
+    "ai_recognized_plate": "B89VOM",
+    "actual_plate": "889VSM",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "227",
+    "source_image": "Cars194.png",
+    "crop_file": "Cars194_0.png",
+    "ai_recognized_plate": "ofrw21oz0768I",
+    "actual_plate": "TN21BZ0768",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "228",
+    "source_image": "Cars195.png",
+    "crop_file": "Cars195_0.png",
+    "ai_recognized_plate": "Pore",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "229",
+    "source_image": "Cars196.png",
+    "crop_file": "Cars196_0.png",
+    "ai_recognized_plate": "mn",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "230",
+    "source_image": "Cars197.png",
+    "crop_file": "Cars197_0.png",
+    "ai_recognized_plate": "“LE",
+    "actual_plate": "LR33TEE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "231",
+    "source_image": "Cars198.png",
+    "crop_file": "Cars198_0.png",
+    "ai_recognized_plate": "MHO1AV¥8866",
+    "actual_plate": "MH01AV8866",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "232",
+    "source_image": "Cars199.png",
+    "crop_file": "Cars199_0.png",
+    "ai_recognized_plate": "~MHO41AE8017",
+    "actual_plate": "MH01AE8017",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "233",
+    "source_image": "Cars200.png",
+    "crop_file": "Cars200_0.png",
+    "ai_recognized_plate": "XA03AB3380",
+    "actual_plate": "KA03AB3380",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "234",
+    "source_image": "Cars201.png",
+    "crop_file": "Cars201_0.png",
+    "ai_recognized_plate": "aF|",
+    "actual_plate": "LR33TEE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "235",
+    "source_image": "Cars202.png",
+    "crop_file": "Cars202_0.png",
+    "ai_recognized_plate": "KWID,",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "236",
+    "source_image": "Cars203.png",
+    "crop_file": "Cars203_0.png",
+    "ai_recognized_plate": "40217KOD",
+    "actual_plate": "CZ17KOD",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "237",
+    "source_image": "Cars204.png",
+    "crop_file": "Cars204_0.png",
+    "ai_recognized_plate": "NBYOND",
+    "actual_plate": "NBYOND",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "238",
+    "source_image": "Cars205.png",
+    "crop_file": "Cars205_0.png",
+    "ai_recognized_plate": "NOTACOP|",
+    "actual_plate": "NOTACOP",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "240",
+    "source_image": "Cars206.png",
+    "crop_file": "Cars206_0.png",
+    "ai_recognized_plate": "HR26BU0380",
+    "actual_plate": "HR26BU0380",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "241",
+    "source_image": "Cars207.png",
+    "crop_file": "Cars207_0.png",
+    "ai_recognized_plate": "_KGU7ER.",
+    "actual_plate": "K817GR",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "242",
+    "source_image": "Cars208.png",
+    "crop_file": "Cars208_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "V8",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "243",
+    "source_image": "Cars209.png",
+    "crop_file": "Cars209_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "244",
+    "source_image": "Cars210.png",
+    "crop_file": "Cars210_0.png",
+    "ai_recognized_plate": "mMHO41AE8017|",
+    "actual_plate": "MH01AE8017",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "245",
+    "source_image": "Cars211.png",
+    "crop_file": "Cars211_0.png",
+    "ai_recognized_plate": "F69022",
+    "actual_plate": "F65022",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "247",
+    "source_image": "Cars212.png",
+    "crop_file": "Cars212_0.png",
+    "ai_recognized_plate": "PKL65H4383|",
+    "actual_plate": "KL65H4383",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "248",
+    "source_image": "Cars213.png",
+    "crop_file": "Cars213_0.png",
+    "ai_recognized_plate": "oe",
+    "actual_plate": "DID2",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "249",
+    "source_image": "Cars214.png",
+    "crop_file": "Cars214_0.png",
+    "ai_recognized_plate": "|",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "250",
+    "source_image": "Cars215.png",
+    "crop_file": "Cars215_0.png",
+    "ai_recognized_plate": "+35CH9984",
+    "actual_plate": "MH20CH9984",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "251",
+    "source_image": "Cars216.png",
+    "crop_file": "Cars216_0.png",
+    "ai_recognized_plate": "OPECLOL",
+    "actual_plate": "OPECLOL",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "252",
+    "source_image": "Cars217.png",
+    "crop_file": "Cars217_0.png",
+    "ai_recognized_plate": "AER2011)",
+    "actual_plate": "AFR-2011",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "253",
+    "source_image": "Cars218.png",
+    "crop_file": "Cars218_0.png",
+    "ai_recognized_plate": "Tet)",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "254",
+    "source_image": "Cars219.png",
+    "crop_file": "Cars219_0.png",
+    "ai_recognized_plate": "KA-03-MG-2784",
+    "actual_plate": "KA03MG2784",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "255",
+    "source_image": "Cars220.png",
+    "crop_file": "Cars220_0.png",
+    "ai_recognized_plate": "6655585",
+    "actual_plate": "PG55585",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "256",
+    "source_image": "Cars221.png",
+    "crop_file": "Cars221_0.png",
+    "ai_recognized_plate": "oR",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "257",
+    "source_image": "Cars222.png",
+    "crop_file": "Cars222_0.png",
+    "ai_recognized_plate": "m26SPF",
+    "actual_plate": "26SPF4",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "258",
+    "source_image": "Cars223.png",
+    "crop_file": "Cars223_0.png",
+    "ai_recognized_plate": "FVie-431",
+    "actual_plate": "VHB431",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "259",
+    "source_image": "Cars224.png",
+    "crop_file": "Cars224_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "KA08AU777",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "260",
+    "source_image": "Cars225.png",
+    "crop_file": "Cars225_0.png",
+    "ai_recognized_plate": "JAG2UAR",
+    "actual_plate": "JA62UAR",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "261",
+    "source_image": "Cars226.png",
+    "crop_file": "Cars226_0.png",
+    "ai_recognized_plate": "{TN1954523]",
+    "actual_plate": "TN19S4523",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "262",
+    "source_image": "Cars227.png",
+    "crop_file": "Cars227_0.png",
+    "ai_recognized_plate": "VB:025)",
+    "actual_plate": "MCB025",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "264",
+    "source_image": "Cars228.png",
+    "crop_file": "Cars228_0.png",
+    "ai_recognized_plate": "=#|",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "265",
+    "source_image": "Cars229.png",
+    "crop_file": "Cars229_0.png",
+    "ai_recognized_plate": "a",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "266",
+    "source_image": "Cars230.png",
+    "crop_file": "Cars230_0.png",
+    "ai_recognized_plate": "oLA",
+    "actual_plate": "LR33TEE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "267",
+    "source_image": "Cars231.png",
+    "crop_file": "Cars231_0.png",
+    "ai_recognized_plate": "GBI8TCE|",
+    "actual_plate": "GB18TCE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "269",
+    "source_image": "Cars232.png",
+    "crop_file": "Cars232_0.png",
+    "ai_recognized_plate": "ae",
+    "actual_plate": "D13",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "270",
+    "source_image": "Cars233.png",
+    "crop_file": "Cars233_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UP16TC1366",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "271",
+    "source_image": "Cars234.png",
+    "crop_file": "Cars234_0.png",
+    "ai_recognized_plate": "-IM4U555|",
+    "actual_plate": "IM4U555",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "272",
+    "source_image": "Cars235.png",
+    "crop_file": "Cars235_0.png",
+    "ai_recognized_plate": "iGJ03JL0126)",
+    "actual_plate": "GJ03JL0126",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "273",
+    "source_image": "Cars236.png",
+    "crop_file": "Cars236_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "274",
+    "source_image": "Cars237.png",
+    "crop_file": "Cars237_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "275",
+    "source_image": "Cars238.png",
+    "crop_file": "Cars238_0.png",
+    "ai_recognized_plate": "aly",
+    "actual_plate": "闽AD00008",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "276",
+    "source_image": "Cars239.png",
+    "crop_file": "Cars239_0.png",
+    "ai_recognized_plate": "®15-LK-10898",
+    "actual_plate": "15LK10898",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "277",
+    "source_image": "Cars240.png",
+    "crop_file": "Cars240_0.png",
+    "ai_recognized_plate": "1CDAF",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "278",
+    "source_image": "Cars241.png",
+    "crop_file": "Cars241_0.png",
+    "ai_recognized_plate": "35AM123",
+    "actual_plate": "3SAM123",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "279",
+    "source_image": "Cars242.png",
+    "crop_file": "Cars242_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "PRENUP",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "280",
+    "source_image": "Cars243.png",
+    "crop_file": "Cars243_0.png",
+    "ai_recognized_plate": "KA-03-MG-2784|",
+    "actual_plate": "KA03MG2784",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "281",
+    "source_image": "Cars244.png",
+    "crop_file": "Cars244_0.png",
+    "ai_recognized_plate": "71-801-27",
+    "actual_plate": "2180127",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "282",
+    "source_image": "Cars245.png",
+    "crop_file": "Cars245_0.png",
+    "ai_recognized_plate": "HR26BR9046)",
+    "actual_plate": "HR26BR9044",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "283",
+    "source_image": "Cars246.png",
+    "crop_file": "Cars246_0.png",
+    "ai_recognized_plate": "_—aae",
+    "actual_plate": "TS009TC268",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "285",
+    "source_image": "Cars247.png",
+    "crop_file": "Cars247_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "TN37CS2765",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "286",
+    "source_image": "Cars248.png",
+    "crop_file": "Cars248_0.png",
+    "ai_recognized_plate": "WH12DE1433",
+    "actual_plate": "MH12DE1433",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "288",
+    "source_image": "Cars249.png",
+    "crop_file": "Cars249_0.png",
+    "ai_recognized_plate": "————",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "289",
+    "source_image": "Cars249.png",
+    "crop_file": "Cars249_1.png",
+    "ai_recognized_plate": "Lal",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "290",
+    "source_image": "Cars249.png",
+    "crop_file": "Cars249_2.png",
+    "ai_recognized_plate": "oO",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "291",
+    "source_image": "Cars249.png",
+    "crop_file": "Cars249_3.png",
+    "ai_recognized_plate": "KA22.N-0852",
+    "actual_plate": "KA42N0852",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "292",
+    "source_image": "Cars250.png",
+    "crop_file": "Cars250_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "PGMN112",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "293",
+    "source_image": "Cars251.png",
+    "crop_file": "Cars251_0.png",
+    "ai_recognized_plate": "HS62FKL",
+    "actual_plate": "H982FKL",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "294",
+    "source_image": "Cars252.png",
+    "crop_file": "Cars252_0.png",
+    "ai_recognized_plate": "DAN54P",
+    "actual_plate": "DAN54P",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "295",
+    "source_image": "Cars253.png",
+    "crop_file": "Cars253_0.png",
+    "ai_recognized_plate": "|omemonl",
+    "actual_plate": "ENDEAVOUR",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "296",
+    "source_image": "Cars254.png",
+    "crop_file": "Cars254_0.png",
+    "ai_recognized_plate": "‘GOT2PO0|",
+    "actual_plate": "GOT2POO",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "297",
+    "source_image": "Cars255.png",
+    "crop_file": "Cars255_0.png",
+    "ai_recognized_plate": "MH20EJ0364}",
+    "actual_plate": "MH20EJ0364",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "298",
+    "source_image": "Cars256.png",
+    "crop_file": "Cars256_0.png",
+    "ai_recognized_plate": "YD63LB",
+    "actual_plate": "YD63LB",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "299",
+    "source_image": "Cars257.png",
+    "crop_file": "Cars257_0.png",
+    "ai_recognized_plate": "(OKLA",
+    "actual_plate": "OKLA",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "301",
+    "source_image": "Cars258.png",
+    "crop_file": "Cars258_0.png",
+    "ai_recognized_plate": "rta",
+    "actual_plate": "KA01AC5957",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "302",
+    "source_image": "Cars259.png",
+    "crop_file": "Cars259_0.png",
+    "ai_recognized_plate": "‘MH20EE7598",
+    "actual_plate": "MH20EE7598",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "303",
+    "source_image": "Cars260.png",
+    "crop_file": "Cars260_0.png",
+    "ai_recognized_plate": "1m4U$333|",
+    "actual_plate": "IM4U5333",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "304",
+    "source_image": "Cars261.png",
+    "crop_file": "Cars261_0.png",
+    "ai_recognized_plate": "~TSOBER1643",
+    "actual_plate": "TS08ER1643",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "305",
+    "source_image": "Cars262.png",
+    "crop_file": "Cars262_0.png",
+    "ai_recognized_plate": "1cH48",
+    "actual_plate": "ICYAH8N",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "306",
+    "source_image": "Cars263.png",
+    "crop_file": "Cars263_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "MH02CB4545",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "307",
+    "source_image": "Cars264.png",
+    "crop_file": "Cars264_0.png",
+    "ai_recognized_plate": "Alea",
+    "actual_plate": "FAMU2010",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "308",
+    "source_image": "Cars265.png",
+    "crop_file": "Cars265_0.png",
+    "ai_recognized_plate": "a",
+    "actual_plate": "M771276",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "309",
+    "source_image": "Cars266.png",
+    "crop_file": "Cars266_0.png",
+    "ai_recognized_plate": "“CU5666",
+    "actual_plate": "MP09CU5600",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "310",
+    "source_image": "Cars266.png",
+    "crop_file": "Cars266_1.png",
+    "ai_recognized_plate": "Seow|",
+    "actual_plate": "TN42L4002",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "311",
+    "source_image": "Cars266.png",
+    "crop_file": "Cars266_2.png",
+    "ai_recognized_plate": "WS34001088",
+    "actual_plate": "WB34AC1080",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "312",
+    "source_image": "Cars266.png",
+    "crop_file": "Cars266_3.png",
+    "ai_recognized_plate": "7785",
+    "actual_plate": "TN06Q7765",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "313",
+    "source_image": "Cars266.png",
+    "crop_file": "Cars266_4.png",
+    "ai_recognized_plate": "|35CH9984",
+    "actual_plate": "MH20CH9984",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "314",
+    "source_image": "Cars266.png",
+    "crop_file": "Cars266_5.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "TN86H5",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "315",
+    "source_image": "Cars267.png",
+    "crop_file": "Cars267_0.png",
+    "ai_recognized_plate": "|OA7222|",
+    "actual_plate": "DR7222",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "316",
+    "source_image": "Cars268.png",
+    "crop_file": "Cars268_0.png",
+    "ai_recognized_plate": "RUM",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "317",
+    "source_image": "Cars269.png",
+    "crop_file": "Cars269_0.png",
+    "ai_recognized_plate": "gS)|",
+    "actual_plate": "FX5131",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "318",
+    "source_image": "Cars270.png",
+    "crop_file": "Cars270_0.png",
+    "ai_recognized_plate": "iBTR2h9~~",
+    "actual_plate": "PG18299",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "319",
+    "source_image": "Cars271.png",
+    "crop_file": "Cars271_0.png",
+    "ai_recognized_plate": "\"YESBUSS",
+    "actual_plate": "YESBOSS",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "320",
+    "source_image": "Cars272.png",
+    "crop_file": "Cars272_0.png",
+    "ai_recognized_plate": "IRX6IGDU",
+    "actual_plate": "RX61GDU",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "321",
+    "source_image": "Cars273.png",
+    "crop_file": "Cars273_0.png",
+    "ai_recognized_plate": "|BRIT0001|",
+    "actual_plate": "BRIT0001",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "322",
+    "source_image": "Cars274.png",
+    "crop_file": "Cars274_0.png",
+    "ai_recognized_plate": "|MANISA|",
+    "actual_plate": "MANISA",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "323",
+    "source_image": "Cars275.png",
+    "crop_file": "Cars275_0.png",
+    "ai_recognized_plate": "BATMAN",
+    "actual_plate": "BATMAN",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "324",
+    "source_image": "Cars276.png",
+    "crop_file": "Cars276_0.png",
+    "ai_recognized_plate": "40217KOD",
+    "actual_plate": "CZ17KOD",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "325",
+    "source_image": "Cars277.png",
+    "crop_file": "Cars277_0.png",
+    "ai_recognized_plate": "pore",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "326",
+    "source_image": "Cars277.png",
+    "crop_file": "Cars277_1.png",
+    "ai_recognized_plate": "et",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "327",
+    "source_image": "Cars277.png",
+    "crop_file": "Cars277_2.png",
+    "ai_recognized_plate": "‘¥",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "328",
+    "source_image": "Cars277.png",
+    "crop_file": "Cars277_3.png",
+    "ai_recognized_plate": "binae",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "329",
+    "source_image": "Cars278.png",
+    "crop_file": "Cars278_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "330",
+    "source_image": "Cars279.png",
+    "crop_file": "Cars279_0.png",
+    "ai_recognized_plate": "™S@atoeY",
+    "actual_plate": "MMN306",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "331",
+    "source_image": "Cars280.png",
+    "crop_file": "Cars280_0.png",
+    "ai_recognized_plate": "ORM.",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "332",
+    "source_image": "Cars281.png",
+    "crop_file": "Cars281_0.png",
+    "ai_recognized_plate": "MH01DB0001",
+    "actual_plate": "MH01DB0001",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "333",
+    "source_image": "Cars282.png",
+    "crop_file": "Cars282_0.png",
+    "ai_recognized_plate": "id|,5—",
+    "actual_plate": "6861136",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "335",
+    "source_image": "Cars283.png",
+    "crop_file": "Cars283_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "336",
+    "source_image": "Cars283.png",
+    "crop_file": "Cars283_1.png",
+    "ai_recognized_plate": "asmtn",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "337",
+    "source_image": "Cars284.png",
+    "crop_file": "Cars284_0.png",
+    "ai_recognized_plate": "Sir2660",
+    "actual_plate": "KA09MA2662",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "338",
+    "source_image": "Cars285.png",
+    "crop_file": "Cars285_0.png",
+    "ai_recognized_plate": "HR26BR9044)|",
+    "actual_plate": "HR26BR9044",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "339",
+    "source_image": "Cars286.png",
+    "crop_file": "Cars286_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "MIDLYPH",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "340",
+    "source_image": "Cars287.png",
+    "crop_file": "Cars287_0.png",
+    "ai_recognized_plate": "pDL7CN5617",
+    "actual_plate": "DL7CN5617",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "341",
+    "source_image": "Cars288.png",
+    "crop_file": "Cars288_0.png",
+    "ai_recognized_plate": "BATMAN",
+    "actual_plate": "BATMAN",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "342",
+    "source_image": "Cars289.png",
+    "crop_file": "Cars289_0.png",
+    "ai_recognized_plate": "_S32H'",
+    "actual_plate": "S32H",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "343",
+    "source_image": "Cars290.png",
+    "crop_file": "Cars290_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "SOV8199",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "344",
+    "source_image": "Cars291.png",
+    "crop_file": "Cars291_0.png",
+    "ai_recognized_plate": "Ex4-02A-6579Bess",
+    "actual_plate": "KA02A6579",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "345",
+    "source_image": "Cars292.png",
+    "crop_file": "Cars292_0.png",
+    "ai_recognized_plate": "KOM",
+    "actual_plate": "AK0188",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "346",
+    "source_image": "Cars293.png",
+    "crop_file": "Cars293_0.png",
+    "ai_recognized_plate": "GBI8TCE",
+    "actual_plate": "GB18TCE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "347",
+    "source_image": "Cars294.png",
+    "crop_file": "Cars294_0.png",
+    "ai_recognized_plate": "04CC4A0004",
+    "actual_plate": "01CC1A0001",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "348",
+    "source_image": "Cars295.png",
+    "crop_file": "Cars295_0.png",
+    "ai_recognized_plate": "Wrett",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "349",
+    "source_image": "Cars295.png",
+    "crop_file": "Cars295_1.png",
+    "ai_recognized_plate": "85-44",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "350",
+    "source_image": "Cars296.png",
+    "crop_file": "Cars296_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "145",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "351",
+    "source_image": "Cars297.png",
+    "crop_file": "Cars297_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "IM4U555",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "352",
+    "source_image": "Cars298.png",
+    "crop_file": "Cars298_0.png",
+    "ai_recognized_plate": "CANBO..",
+    "actual_plate": "LAMBO",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "353",
+    "source_image": "Cars299.png",
+    "crop_file": "Cars299_0.png",
+    "ai_recognized_plate": "SDN7484U",
+    "actual_plate": "SDN7484U",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "354",
+    "source_image": "Cars300.png",
+    "crop_file": "Cars300_0.png",
+    "ai_recognized_plate": "eyi232",
+    "actual_plate": "M17108 FV1232",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "355",
+    "source_image": "Cars301.png",
+    "crop_file": "Cars301_0.png",
+    "ai_recognized_plate": "6526JHD",
+    "actual_plate": "G526JHD",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "356",
+    "source_image": "Cars302.png",
+    "crop_file": "Cars302_0.png",
+    "ai_recognized_plate": "lx01cc50",
+    "actual_plate": "KL01CC50",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "357",
+    "source_image": "Cars303.png",
+    "crop_file": "Cars303_0.png",
+    "ai_recognized_plate": "KL54:A-2670|",
+    "actual_plate": "KL54A2670",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "358",
+    "source_image": "Cars304.png",
+    "crop_file": "Cars304_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "HNYCHIL3",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "359",
+    "source_image": "Cars305.png",
+    "crop_file": "Cars305_0.png",
+    "ai_recognized_plate": "SGQ5i_JU",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "360",
+    "source_image": "Cars306.png",
+    "crop_file": "Cars306_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "LAWYER",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "361",
+    "source_image": "Cars307.png",
+    "crop_file": "Cars307_0.png",
+    "ai_recognized_plate": "M-906090-K",
+    "actual_plate": "M906090K",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "362",
+    "source_image": "Cars308.png",
+    "crop_file": "Cars308_0.png",
+    "ai_recognized_plate": "HR26BC55I4)",
+    "actual_plate": "HR26BC5514",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "363",
+    "source_image": "Cars309.png",
+    "crop_file": "Cars309_0.png",
+    "ai_recognized_plate": "Bg)",
+    "actual_plate": "EAB0001",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "364",
+    "source_image": "Cars310.png",
+    "crop_file": "Cars310_0.png",
+    "ai_recognized_plate": "LDalyTL.",
+    "actual_plate": "4GETOIL",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "365",
+    "source_image": "Cars311.png",
+    "crop_file": "Cars311_0.png",
+    "ai_recognized_plate": "TwataT8348",
+    "actual_plate": "TN21AT8349",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "366",
+    "source_image": "Cars311.png",
+    "crop_file": "Cars311_1.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "367",
+    "source_image": "Cars312.png",
+    "crop_file": "Cars312_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "PUI8BES",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "368",
+    "source_image": "Cars313.png",
+    "crop_file": "Cars313_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "NBEYOND",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "369",
+    "source_image": "Cars314.png",
+    "crop_file": "Cars314_0.png",
+    "ai_recognized_plate": "PlVig",
+    "actual_plate": "6PIV728",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "370",
+    "source_image": "Cars315.png",
+    "crop_file": "Cars315_0.png",
+    "ai_recognized_plate": "©J98257|",
+    "actual_plate": "J98257",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "371",
+    "source_image": "Cars316.png",
+    "crop_file": "Cars316_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "372",
+    "source_image": "Cars316.png",
+    "crop_file": "Cars316_1.png",
+    "ai_recognized_plate": "AHO?BB2",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "373",
+    "source_image": "Cars317.png",
+    "crop_file": "Cars317_0.png",
+    "ai_recognized_plate": "HR26BC5514",
+    "actual_plate": "HR26BC5514",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "374",
+    "source_image": "Cars318.png",
+    "crop_file": "Cars318_0.png",
+    "ai_recognized_plate": "ALR486",
+    "actual_plate": "ALR486",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "375",
+    "source_image": "Cars319.png",
+    "crop_file": "Cars319_0.png",
+    "ai_recognized_plate": "FALLYOU",
+    "actual_plate": "FALLYOU",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "376",
+    "source_image": "Cars320.png",
+    "crop_file": "Cars320_0.png",
+    "ai_recognized_plate": "me”2669",
+    "actual_plate": "KA09MA2662",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "377",
+    "source_image": "Cars321.png",
+    "crop_file": "Cars321_0.png",
+    "ai_recognized_plate": "LOLOiL]",
+    "actual_plate": "LOLOIL",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "378",
+    "source_image": "Cars322.png",
+    "crop_file": "Cars322_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "700V",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "379",
+    "source_image": "Cars323.png",
+    "crop_file": "Cars323_0.png",
+    "ai_recognized_plate": "TNSSF2378",
+    "actual_plate": "TN99F2378",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "380",
+    "source_image": "Cars324.png",
+    "crop_file": "Cars324_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "VI2LAF",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "381",
+    "source_image": "Cars325.png",
+    "crop_file": "Cars325_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "383",
+    "source_image": "Cars326.png",
+    "crop_file": "Cars326_0.png",
+    "ai_recognized_plate": "DL8CX4850",
+    "actual_plate": "DL8CX4850",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "384",
+    "source_image": "Cars327.png",
+    "crop_file": "Cars327_0.png",
+    "ai_recognized_plate": "PGeMN112)",
+    "actual_plate": "PGMN112",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "385",
+    "source_image": "Cars328.png",
+    "crop_file": "Cars328_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "IM4U555",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "386",
+    "source_image": "Cars329.png",
+    "crop_file": "Cars329_0.png",
+    "ai_recognized_plate": "16H",
+    "actual_plate": "16M",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "387",
+    "source_image": "Cars330.png",
+    "crop_file": "Cars330_0.png",
+    "ai_recognized_plate": "AL)",
+    "actual_plate": "MG6B00",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "388",
+    "source_image": "Cars330.png",
+    "crop_file": "Cars330_1.png",
+    "ai_recognized_plate": "VAG7E)",
+    "actual_plate": "VR67511",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "389",
+    "source_image": "Cars330.png",
+    "crop_file": "Cars330_2.png",
+    "ai_recognized_plate": "a",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "390",
+    "source_image": "Cars330.png",
+    "crop_file": "Cars330_3.png",
+    "ai_recognized_plate": ">",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "391",
+    "source_image": "Cars331.png",
+    "crop_file": "Cars331_0.png",
+    "ai_recognized_plate": "HR.26.CB.1900:",
+    "actual_plate": "HR26CB1900",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "393",
+    "source_image": "Cars332.png",
+    "crop_file": "Cars332_0.png",
+    "ai_recognized_plate": "DZI7YXR|",
+    "actual_plate": "DZ17 YXR",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "394",
+    "source_image": "Cars333.png",
+    "crop_file": "Cars333_0.png",
+    "ai_recognized_plate": "|MH20EJ0364)",
+    "actual_plate": "MH20EJ0364",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "395",
+    "source_image": "Cars334.png",
+    "crop_file": "Cars334_0.png",
+    "ai_recognized_plate": "ESOLA|",
+    "actual_plate": "E8OLA",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "396",
+    "source_image": "Cars335.png",
+    "crop_file": "Cars335_0.png",
+    "ai_recognized_plate": "NOTACOP)",
+    "actual_plate": "NOTACOP",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "398",
+    "source_image": "Cars336.png",
+    "crop_file": "Cars336_0.png",
+    "ai_recognized_plate": "cIDL8CX48-50",
+    "actual_plate": "DL8CX4850",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "399",
+    "source_image": "Cars337.png",
+    "crop_file": "Cars337_0.png",
+    "ai_recognized_plate": "by",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "400",
+    "source_image": "Cars338.png",
+    "crop_file": "Cars338_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "401",
+    "source_image": "Cars339.png",
+    "crop_file": "Cars339_0.png",
+    "ai_recognized_plate": "|OOTPLATE.COM",
+    "actual_plate": "007PLATE.COM",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "402",
+    "source_image": "Cars340.png",
+    "crop_file": "Cars340_0.png",
+    "ai_recognized_plate": "|VX54FYL",
+    "actual_plate": "VX54FVL",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "403",
+    "source_image": "Cars341.png",
+    "crop_file": "Cars341_0.png",
+    "ai_recognized_plate": "ir",
+    "actual_plate": "TS009TC268",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "405",
+    "source_image": "Cars342.png",
+    "crop_file": "Cars342_0.png",
+    "ai_recognized_plate": "iMANISA,",
+    "actual_plate": "MANISA",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "406",
+    "source_image": "Cars343.png",
+    "crop_file": "Cars343_0.png",
+    "ai_recognized_plate": "SKIPGAS|",
+    "actual_plate": "SKIPGAS",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "407",
+    "source_image": "Cars344.png",
+    "crop_file": "Cars344_0.png",
+    "ai_recognized_plate": "GOOGLE",
+    "actual_plate": "GOOGLE",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "408",
+    "source_image": "Cars345.png",
+    "crop_file": "Cars345_0.png",
+    "ai_recognized_plate": "‘KG,OOP",
+    "actual_plate": "OMGMOOV",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "410",
+    "source_image": "Cars346.png",
+    "crop_file": "Cars346_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "KA03AB3380",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "411",
+    "source_image": "Cars347.png",
+    "crop_file": "Cars347_0.png",
+    "ai_recognized_plate": "is",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "412",
+    "source_image": "Cars348.png",
+    "crop_file": "Cars348_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "EAB0001",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "413",
+    "source_image": "Cars349.png",
+    "crop_file": "Cars349_0.png",
+    "ai_recognized_plate": "bPYS6BXUT",
+    "actual_plate": "PY56BXU",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "414",
+    "source_image": "Cars350.png",
+    "crop_file": "Cars350_0.png",
+    "ai_recognized_plate": "HailsOice",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "415",
+    "source_image": "Cars351.png",
+    "crop_file": "Cars351_0.png",
+    "ai_recognized_plate": "\"C87:ROS",
+    "actual_plate": "CB7R605",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "416",
+    "source_image": "Cars352.png",
+    "crop_file": "Cars352_0.png",
+    "ai_recognized_plate": "ees",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "417",
+    "source_image": "Cars352.png",
+    "crop_file": "Cars352_1.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "418",
+    "source_image": "Cars353.png",
+    "crop_file": "Cars353_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "KA03AB3380",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "419",
+    "source_image": "Cars354.png",
+    "crop_file": "Cars354_0.png",
+    "ai_recognized_plate": "etd",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "420",
+    "source_image": "Cars355.png",
+    "crop_file": "Cars355_0.png",
+    "ai_recognized_plate": "BKTP:665)",
+    "actual_plate": "BKTP665",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "421",
+    "source_image": "Cars356.png",
+    "crop_file": "Cars356_0.png",
+    "ai_recognized_plate": "|bSMART",
+    "actual_plate": "BSMART2",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "422",
+    "source_image": "Cars357.png",
+    "crop_file": "Cars357_0.png",
+    "ai_recognized_plate": "KOM",
+    "actual_plate": "AK0188",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "424",
+    "source_image": "Cars358.png",
+    "crop_file": "Cars358_0.png",
+    "ai_recognized_plate": "~PZ62FDX|",
+    "actual_plate": "PZ62FDX",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "425",
+    "source_image": "Cars358.png",
+    "crop_file": "Cars358_1.png",
+    "ai_recognized_plate": "PZ62FDZ|",
+    "actual_plate": "PZ62FDZ",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "426",
+    "source_image": "Cars359.png",
+    "crop_file": "Cars359_0.png",
+    "ai_recognized_plate": "R362OL",
+    "actual_plate": "R362GGL",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "427",
+    "source_image": "Cars360.png",
+    "crop_file": "Cars360_0.png",
+    "ai_recognized_plate": "oe",
+    "actual_plate": "DX103",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "428",
+    "source_image": "Cars361.png",
+    "crop_file": "Cars361_0.png",
+    "ai_recognized_plate": "MPEACH",
+    "actual_plate": "MPEACHW",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "429",
+    "source_image": "Cars362.png",
+    "crop_file": "Cars362_0.png",
+    "ai_recognized_plate": "i",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "430",
+    "source_image": "Cars363.png",
+    "crop_file": "Cars363_0.png",
+    "ai_recognized_plate": "etAWkea",
+    "actual_plate": "WIW123",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "431",
+    "source_image": "Cars364.png",
+    "crop_file": "Cars364_0.png",
+    "ai_recognized_plate": "bce5099)",
+    "actual_plate": "DL3CBD5092",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "432",
+    "source_image": "Cars365.png",
+    "crop_file": "Cars365_0.png",
+    "ai_recognized_plate": "|TN21BZ07685",
+    "actual_plate": "TN21BZ0768",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "433",
+    "source_image": "Cars366.png",
+    "crop_file": "Cars366_0.png",
+    "ai_recognized_plate": ":Mir20Ba_",
+    "actual_plate": "MH20BQ20",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "434",
+    "source_image": "Cars367.png",
+    "crop_file": "Cars367_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "GOOGLE",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "435",
+    "source_image": "Cars368.png",
+    "crop_file": "Cars368_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "D13",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "436",
+    "source_image": "Cars369.png",
+    "crop_file": "Cars369_0.png",
+    "ai_recognized_plate": "©15-LK-10898",
+    "actual_plate": "15LK10898",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "437",
+    "source_image": "Cars370.png",
+    "crop_file": "Cars370_0.png",
+    "ai_recognized_plate": "CHO1ANO0001",
+    "actual_plate": "CH01AN0001",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "438",
+    "source_image": "Cars371.png",
+    "crop_file": "Cars371_0.png",
+    "ai_recognized_plate": ".@20°",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "439",
+    "source_image": "Cars372.png",
+    "crop_file": "Cars372_0.png",
+    "ai_recognized_plate": "~HR26CE1485",
+    "actual_plate": "HR26CE1485",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "440",
+    "source_image": "Cars373.png",
+    "crop_file": "Cars373_0.png",
+    "ai_recognized_plate": "™21BC6225",
+    "actual_plate": "TN21BC6225",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "441",
+    "source_image": "Cars374.png",
+    "crop_file": "Cars374_0.png",
+    "ai_recognized_plate": "$7JDWJ",
+    "actual_plate": "S7JDW",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "442",
+    "source_image": "Cars375.png",
+    "crop_file": "Cars375_0.png",
+    "ai_recognized_plate": "PamaCone&Dov",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "444",
+    "source_image": "Cars376.png",
+    "crop_file": "Cars376_0.png",
+    "ai_recognized_plate": "=B2228HM)",
+    "actual_plate": "B2228HM",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "445",
+    "source_image": "Cars377.png",
+    "crop_file": "Cars377_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "BYHM·136",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "446",
+    "source_image": "Cars378.png",
+    "crop_file": "Cars378_0.png",
+    "ai_recognized_plate": "GIGS",
+    "actual_plate": "MH05CM4141",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "447",
+    "source_image": "Cars379.png",
+    "crop_file": "Cars379_0.png",
+    "ai_recognized_plate": "aHY9239)",
+    "actual_plate": "MH14GN9239",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "448",
+    "source_image": "Cars380.png",
+    "crop_file": "Cars380_0.png",
+    "ai_recognized_plate": "ss",
+    "actual_plate": "W718AX",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "449",
+    "source_image": "Cars381.png",
+    "crop_file": "Cars381_0.png",
+    "ai_recognized_plate": "tinait20°89563)",
+    "actual_plate": "2089563",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "450",
+    "source_image": "Cars382.png",
+    "crop_file": "Cars382_0.png",
+    "ai_recognized_plate": "CRAIG.|",
+    "actual_plate": "CRAIG",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "452",
+    "source_image": "Cars383.png",
+    "crop_file": "Cars383_0.png",
+    "ai_recognized_plate": "VASSCz?|",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "453",
+    "source_image": "Cars384.png",
+    "crop_file": "Cars384_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "DX103",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "454",
+    "source_image": "Cars385.png",
+    "crop_file": "Cars385_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "EV09FTW",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "455",
+    "source_image": "Cars386.png",
+    "crop_file": "Cars386_0.png",
+    "ai_recognized_plate": "AB44887",
+    "actual_plate": "AB44887",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "456",
+    "source_image": "Cars387.png",
+    "crop_file": "Cars387_0.png",
+    "ai_recognized_plate": "HR26AZ5927",
+    "actual_plate": "HR26AZ5927",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "457",
+    "source_image": "Cars388.png",
+    "crop_file": "Cars388_0.png",
+    "ai_recognized_plate": "°.590\"3a",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "458",
+    "source_image": "Cars389.png",
+    "crop_file": "Cars389_0.png",
+    "ai_recognized_plate": "5AB44887)",
+    "actual_plate": "AB44887",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "459",
+    "source_image": "Cars390.png",
+    "crop_file": "Cars390_0.png",
+    "ai_recognized_plate": "elk",
+    "actual_plate": "5HT799",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "460",
+    "source_image": "Cars390.png",
+    "crop_file": "Cars390_1.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "5HT798",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "461",
+    "source_image": "Cars391.png",
+    "crop_file": "Cars391_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "BKWL324",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "462",
+    "source_image": "Cars392.png",
+    "crop_file": "Cars392_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "DZVG49",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "463",
+    "source_image": "Cars393.png",
+    "crop_file": "Cars393_0.png",
+    "ai_recognized_plate": "771276",
+    "actual_plate": "M771276",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "464",
+    "source_image": "Cars394.png",
+    "crop_file": "Cars394_0.png",
+    "ai_recognized_plate": "PMH12.MR.0613|",
+    "actual_plate": "MH12MR0613",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "466",
+    "source_image": "Cars395.png",
+    "crop_file": "Cars395_0.png",
+    "ai_recognized_plate": "ichBY|",
+    "actual_plate": "ICYAH8N",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "468",
+    "source_image": "Cars396.png",
+    "crop_file": "Cars396_0.png",
+    "ai_recognized_plate": ":REAP3R.",
+    "actual_plate": "REAP3R",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "469",
+    "source_image": "Cars397.png",
+    "crop_file": "Cars397_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "9214",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "470",
+    "source_image": "Cars398.png",
+    "crop_file": "Cars398_0.png",
+    "ai_recognized_plate": "owwl|",
+    "actual_plate": "MMN306",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "471",
+    "source_image": "Cars399.png",
+    "crop_file": "Cars399_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "OX65AWD",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "472",
+    "source_image": "Cars400.png",
+    "crop_file": "Cars400_0.png",
+    "ai_recognized_plate": "1]",
+    "actual_plate": "889VSM",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "473",
+    "source_image": "Cars401.png",
+    "crop_file": "Cars401_0.png",
+    "ai_recognized_plate": "HR26BC5514)",
+    "actual_plate": "HR26BC5514",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "474",
+    "source_image": "Cars402.png",
+    "crop_file": "Cars402_0.png",
+    "ai_recognized_plate": "sea5si_JU",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "475",
+    "source_image": "Cars403.png",
+    "crop_file": "Cars403_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "067RAF",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "476",
+    "source_image": "Cars403.png",
+    "crop_file": "Cars403_1.png",
+    "ai_recognized_plate": "Pss-52]",
+    "actual_plate": "066RAF",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "477",
+    "source_image": "Cars404.png",
+    "crop_file": "Cars404_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "BMW",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "478",
+    "source_image": "Cars405.png",
+    "crop_file": "Cars405_0.png",
+    "ai_recognized_plate": "1M414(0.3687'",
+    "actual_plate": "MH14EC3887",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "479",
+    "source_image": "Cars406.png",
+    "crop_file": "Cars406_0.png",
+    "ai_recognized_plate": "1266:00:00",
+    "actual_plate": "1268",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "480",
+    "source_image": "Cars407.png",
+    "crop_file": "Cars407_0.png",
+    "ai_recognized_plate": "PETES",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "481",
+    "source_image": "Cars408.png",
+    "crop_file": "Cars408_0.png",
+    "ai_recognized_plate": "on",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "482",
+    "source_image": "Cars409.png",
+    "crop_file": "Cars409_0.png",
+    "ai_recognized_plate": "RK=>977AF",
+    "actual_plate": "RK977AF",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "483",
+    "source_image": "Cars410.png",
+    "crop_file": "Cars410_0.png",
+    "ai_recognized_plate": "EWWPOOP",
+    "actual_plate": "EWWPOOP",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "484",
+    "source_image": "Cars411.png",
+    "crop_file": "Cars411_0.png",
+    "ai_recognized_plate": "#VIPER",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "486",
+    "source_image": "Cars412.png",
+    "crop_file": "Cars412_0.png",
+    "ai_recognized_plate": "SLA",
+    "actual_plate": "LR33TEE",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "488",
+    "source_image": "Cars413.png",
+    "crop_file": "Cars413_0.png",
+    "ai_recognized_plate": "85:44:00",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "489",
+    "source_image": "Cars413.png",
+    "crop_file": "Cars413_1.png",
+    "ai_recognized_plate": "OL",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "490",
+    "source_image": "Cars414.png",
+    "crop_file": "Cars414_0.png",
+    "ai_recognized_plate": "cite",
+    "actual_plate": "DRUNK",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "492",
+    "source_image": "Cars415.png",
+    "crop_file": "Cars415_0.png",
+    "ai_recognized_plate": "IMHA@NEBee]",
+    "actual_plate": "MH12NE8922",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "493",
+    "source_image": "Cars416.png",
+    "crop_file": "Cars416_0.png",
+    "ai_recognized_plate": "™1/2IMJ",
+    "actual_plate": "172TMJ",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "494",
+    "source_image": "Cars417.png",
+    "crop_file": "Cars417_0.png",
+    "ai_recognized_plate": "MBAD-231",
+    "actual_plate": "BAD231",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "495",
+    "source_image": "Cars418.png",
+    "crop_file": "Cars418_0.png",
+    "ai_recognized_plate": "9x65AWD",
+    "actual_plate": "OX65AWD",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "496",
+    "source_image": "Cars419.png",
+    "crop_file": "Cars419_0.png",
+    "ai_recognized_plate": "MHC9999:",
+    "actual_plate": "MH14GN9239",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "497",
+    "source_image": "Cars420.png",
+    "crop_file": "Cars420_0.png",
+    "ai_recognized_plate": "SKTPGAS",
+    "actual_plate": "SKIPGAS",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "498",
+    "source_image": "Cars421.png",
+    "crop_file": "Cars421_0.png",
+    "ai_recognized_plate": "a,",
+    "actual_plate": "UNREADABLE",
+    "judgement": "확인불가"
+  },
+  {
+    "event_id": "499",
+    "source_image": "Cars422.png",
+    "crop_file": "Cars422_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "MH20EE7596",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "500",
+    "source_image": "Cars423.png",
+    "crop_file": "Cars423_0.png",
+    "ai_recognized_plate": "BP3RYVPF",
+    "actual_plate": "P3RVP",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "501",
+    "source_image": "Cars424.png",
+    "crop_file": "Cars424_0.png",
+    "ai_recognized_plate": "KA-O3-MG-2784",
+    "actual_plate": "KA03MG2784",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "502",
+    "source_image": "Cars425.png",
+    "crop_file": "Cars425_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "G526JHD",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "503",
+    "source_image": "Cars426.png",
+    "crop_file": "Cars426_0.png",
+    "ai_recognized_plate": "CRAIG",
+    "actual_plate": "CRAIG",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "504",
+    "source_image": "Cars427.png",
+    "crop_file": "Cars427_0.png",
+    "ai_recognized_plate": "01CC1A0001",
+    "actual_plate": "01CC1A0001",
+    "judgement": "정인식"
+  },
+  {
+    "event_id": "505",
+    "source_image": "Cars428.png",
+    "crop_file": "Cars428_0.png",
+    "ai_recognized_plate": "—DZI7YXR-",
+    "actual_plate": "DZ17 YXR",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "506",
+    "source_image": "Cars429.png",
+    "crop_file": "Cars429_0.png",
+    "ai_recognized_plate": "7425SeS",
+    "actual_plate": "KA1SER",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "507",
+    "source_image": "Cars430.png",
+    "crop_file": "Cars430_0.png",
+    "ai_recognized_plate": "",
+    "actual_plate": "BCG986",
+    "judgement": "미인식"
+  },
+  {
+    "event_id": "508",
+    "source_image": "Cars431.png",
+    "crop_file": "Cars431_0.png",
+    "ai_recognized_plate": "“Medelton",
+    "actual_plate": "KLBOSS",
+    "judgement": "오인식"
+  },
+  {
+    "event_id": "509",
+    "source_image": "Cars432.png",
+    "crop_file": "Cars432_0.png",
+    "ai_recognized_plate": "I?DL49AK49",
+    "actual_plate": "DL49AK49",
+    "judgement": "오인식"
   }
 ];
 
@@ -432,7 +3944,7 @@ new Chart(document.getElementById('compareChart'), {
   data:{
     labels:['Precision','Recall','F1','정인식률'],
     datasets:[{
-      data:[91.7, 89.0, 90.3, 17.9],
+      data:[91.7, 89.0, 90.3, 21.2],
       backgroundColor:['#34D399','#34D399','#34D399','#2FD4C4'],
       borderRadius:4,
     }]
